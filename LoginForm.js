@@ -18,9 +18,9 @@ export default class LoginForm extends Component{
 		 try{
 		 	let email=this.state.email;
 		 	let password=this.state.password;
-		 	if(email=='test' && password=='1234')
+		 	if(email=='test@email.com' && password=='1234')
 		 	{
-		 		Actions.home();
+		 		Actions.home("currentEmail",email);
 		 	}
 		 }catch(error)
 		 {

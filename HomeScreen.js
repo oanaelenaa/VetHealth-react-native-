@@ -16,6 +16,7 @@ export default class HomeScreen extends Component{
     	dataSource:ds.cloneWithRows(rows),
 
     };
+    this.sendMailTo=this.props.currentEmail;
 
     if(this.props.checkChange)
     {
@@ -53,8 +54,8 @@ export default class HomeScreen extends Component{
 	}
 
   onSendMailPressed(){
-   var to="oana@example.com";
-     email(to, {
+   //var to="oana@example.com";
+     email(this.sendMailTo, {
             // Optional additional arguments
             cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
             bcc: 'mee@mee.com', // string or array of email addresses
@@ -70,8 +71,8 @@ export default class HomeScreen extends Component{
       	<ListView style={styles.listContainer}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}/>
-        <TouchableOpacity onPress={() => this.onSendMailPressed()} style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Send mail</Text>
+        <TouchableOpacity onPress={() => this.onSendMailPressed()} style={styles.buttonSendMail}>
+          <Text style={styles.sendMailText}>Send mail</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.onLogOutPressed()} style={styles.buttonContainer}>
@@ -111,6 +112,19 @@ const styles=StyleSheet.create({
 		backgroundColor:'#FA5882',
 		paddingVertical:15
 	},
+  buttonSendMail:{
+    alignItems: 'center',
+    paddingBottom: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+
+  },
+  sendMailText:{
+    textAlign:'center',
+    color:'#FA5882',
+    fontSize: 30
+
+  },
 	buttonText:{
 		textAlign:'center',
 		color:'#01DF74'
