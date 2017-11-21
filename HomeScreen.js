@@ -1,20 +1,19 @@
 import React,{PropTypes,Component} from 'react';
-import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet} from 'react-native';
+import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet,RefreshControl} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import email from 'react-native-email'
+
+export const rows=[{id:0,name:'row 1'}, {id:1,name:'row 2'},{id:2,name:'row 3'},{id:3,name:'row 4'},{id:4,name:'row 5'}]
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
 export default class HomeScreen extends Component{
 	constructor(props) {
     super(props);
     this.onLogOutPressed=this.onLogOutPressed.bind(this)
-    this.setInfo = this.setInfo.bind(this);
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-
-
-    //this.onRowPresses=this.onRowPresses.bind(this)
-
+    this.onSendMailPressed=this.onSendMailPressed.bind(this)
     this.state={
     	itemValueChanges:false,
-    	dataSource:ds.cloneWithRows([{id:0,name:'row 1'}, {id:1,name:'row 2'},{id:2,name:'row 3'},{id:3,name:'row 4'},{id:4,name:'row 5'}] )
+    	dataSource:ds.cloneWithRows(rows),
 
     };
 
@@ -23,29 +22,47 @@ export default class HomeScreen extends Component{
     	var idd=this.props.itemupdatedId;
     	var newVal=this.props.newitemvalue;
     	console.log(idd,newVal);
-    	let newArray=this.state.dataSource._dataBlob.s1.slice();
-    	newArray[idd]={
+    	var newArray2=rows.slice();
+    	newArray2[idd]={
     		id:idd,
     		name:newVal
     	};
     	this.state.itemValueChanges=false;
-    	console.log(newArray);
-    	this.setInfo(newArray);
-    	ds=newArray;
+    	console.log(newArray2);
+    	this.setState({dataSource:ds.cloneWithRows(newArray2)})
     }
+
 	}
-
-	setInfo = (newArray) => {
-		this.setState({
-			dataSource:this.state.dataSource.cloneWithRows(newArray),
-
-		});
-  	}
+	/*_onRefresh(){
+		this.setState({refreshing: true});
+		var idd=this.props.itemupdatedId;
+    	var newVal=this.props.newitemvalue;
+    	console.log(idd,newVal);
+    	var newArray2=rows.slice();
+    	newArray2[idd]={
+    		id:idd,
+    		name:newVal
+    	};
+    	console.log(newArray2);
+		this.setState({dataSource:ds.cloneWithRows(newArray2)})
+	}*/
 
 	async onLogOutPressed(){
 		Actions.login();
 
 	}
+
+  onSendMailPressed(){
+   var to="oana@example.com";
+     email(to, {
+            // Optional additional arguments
+            cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
+            bcc: 'mee@mee.com', // string or array of email addresses
+            subject: 'Show how to use',
+            body: 'Some body right here'
+        }).catch(console.error)
+    }
+
 	
 	render() {
     return (
@@ -53,9 +70,13 @@ export default class HomeScreen extends Component{
       	<ListView style={styles.listContainer}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}/>
+        <TouchableOpacity onPress={() => this.onSendMailPressed()} style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Send mail</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={() => this.onLogOutPressed()} style={styles.buttonContainer}>
 			 		<Text style={styles.buttonText}>Log out</Text>
-		</TouchableOpacity>
+		    </TouchableOpacity>
 
         </View>
     );

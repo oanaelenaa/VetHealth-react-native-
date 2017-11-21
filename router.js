@@ -12,7 +12,7 @@ export default class Routes extends Component{
   			<Stack key="root">
   			<Scene key="login" component={Login} title="Login" initial={true} />
   			<Scene key="home" component={HomeScreen} title="Items"/>
-  			 <Scene key="editItemScreen" path={"/editItemScreen/:id"} component={EditItemScreen} title="Edit Item"/>
+  			<Scene key="editItemScreen" path={"/editItemScreen/:id"} component={EditItemScreen} title="Edit Item"/>
   			</Stack>
   		</Router>
   		);
