@@ -18,10 +18,12 @@ export default class LoginForm extends Component{
 		 try{
 		 	let email=this.state.email;
 		 	let password=this.state.password;
-		 	if(email=='test@email.com' && password=='1234')
-		 	{
+		 	console.log(email,password);
+		 	//if(email=='test@email.com' && password=='1234')
+		 	//{
+		 		console.log("ok");
 		 		Actions.home("currentEmail",email);
-		 	}
+		 	//}
 		 }catch(error)
 		 {
 		 	this.setState({error:error});
@@ -56,12 +58,13 @@ const styles=StyleSheet.create({
 		paddingHorizontal:10
 	},
 	buttonContainer:{
-		backgroundColor:'#FA5882',
+		backgroundColor:'#F86FA3',
 		paddingVertical:15
 	},
 	buttonText:{
 		textAlign:'center',
-		color:'#01DF74'
+		color:'#57AEA3',
+		fontWeight:"bold"
 	//	fontWeight:1200 
 	}
 });

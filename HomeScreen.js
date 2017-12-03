@@ -3,7 +3,7 @@ import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet,Ref
 import {Actions} from 'react-native-router-flux';
 import email from 'react-native-email'
 
-export const rows=[{id:0,name:'row 1'}, {id:1,name:'row 2'},{id:2,name:'row 3'},{id:3,name:'row 4'},{id:4,name:'row 5'}]
+export var rows=[{id:0,name:'row 1'}, {id:1,name:'row 2'},{id:2,name:'row 3'},{id:3,name:'row 4'},{id:4,name:'row 5'}]
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
 export default class HomeScreen extends Component{
@@ -11,43 +11,22 @@ export default class HomeScreen extends Component{
     super(props);
     this.onLogOutPressed=this.onLogOutPressed.bind(this)
     this.onSendMailPressed=this.onSendMailPressed.bind(this)
-    this.state={
-    	itemValueChanges:false,
-    	dataSource:ds.cloneWithRows(rows),
-
-    };
-    this.sendMailTo=this.props.currentEmail;
-
     if(this.props.checkChange)
     {
-    	var idd=this.props.itemupdatedId;
-    	var newVal=this.props.newitemvalue;
-    	console.log(idd,newVal);
-    	var newArray2=rows.slice();
-    	newArray2[idd]={
-    		id:idd,
-    		name:newVal
-    	};
-    	this.state.itemValueChanges=false;
-    	console.log(newArray2);
-    	this.setState({dataSource:ds.cloneWithRows(newArray2)})
-    }
+      this.state={
+      itemValueChanges:false,
+      dataSource:ds.cloneWithRows(this.props.newItemsList)
+    };
+  }else{
+    this.state={
+      itemValueChanges:false,
+      dataSource:ds.cloneWithRows(rows),
+    };
+  }
+    this.sendMailTo=this.props.currentEmail;
 
 	}
-	/*_onRefresh(){
-		this.setState({refreshing: true});
-		var idd=this.props.itemupdatedId;
-    	var newVal=this.props.newitemvalue;
-    	console.log(idd,newVal);
-    	var newArray2=rows.slice();
-    	newArray2[idd]={
-    		id:idd,
-    		name:newVal
-    	};
-    	console.log(newArray2);
-		this.setState({dataSource:ds.cloneWithRows(newArray2)})
-	}*/
-
+	
 	async onLogOutPressed(){
 		Actions.login();
 
@@ -84,7 +63,7 @@ export default class HomeScreen extends Component{
   }
   renderRow(rowData){
   	return(
-  		<TouchableHighlight onPress={()=>Actions.editItemScreen({valueToEdit:rowData})}  underlayColor = '#ddd'>
+  		<TouchableHighlight onPress={()=>Actions.editItemScreen({valueToEdit:rowData,itemsList:rows})}  underlayColor = '#ddd'>
   		<View style={styles.cell}>
   			<Text>{rowData.name}</Text>
   		</View>
@@ -99,7 +78,7 @@ export default class HomeScreen extends Component{
 const styles=StyleSheet.create({
 	container:{
 		flex:1,
-		backgroundColor:'#CEF6CE'
+		backgroundColor:'#FEFEFE'
 	},
 	cell:{
     alignItems: 'center',
@@ -109,7 +88,7 @@ const styles=StyleSheet.create({
     borderBottomColor: 'gray',
 	},
 	buttonContainer:{
-		backgroundColor:'#FA5882',
+		backgroundColor:'#F86FA3',
 		paddingVertical:15
 	},
   buttonSendMail:{
@@ -121,13 +100,13 @@ const styles=StyleSheet.create({
   },
   sendMailText:{
     textAlign:'center',
-    color:'#FA5882',
+    color:'#F86FA3',
     fontSize: 30
 
   },
 	buttonText:{
 		textAlign:'center',
-		color:'#01DF74'
+		color:'#57AEA3'
 	}
 });
     

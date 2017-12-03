@@ -11,13 +11,20 @@ export default class EditItemScreen extends Component{
 		this.state={
 			itemValue:this.props.valueToEdit.name,
 			itemId:this.props.valueToEdit.id,
+			listItems:this.props.itemsList
 		}
 		this.onSavePressed=this.onSavePressed.bind(this)
 
 
 	}
 	async onSavePressed(){
-		Actions.home({itemupdatedId:this.state.itemId,newitemvalue:this.state.itemValue,checkChange:true});
+		var newArray2=this.state.listItems.slice();
+    	newArray2[this.state.itemId]={
+    		id:this.state.itemId,
+    		name:this.state.itemValue
+    	};
+    	console.log(newArray2);
+		Actions.home({newItemsList:newArray2,checkChange:true});
 
 	}
 	render(){
@@ -35,7 +42,7 @@ export default class EditItemScreen extends Component{
 const styles=StyleSheet.create({
 	container:{
 		flex:1,
-		backgroundColor:'#CEF6CE'
+		backgroundColor:'#FEFEFE'
 	},
 	input:{
 		height:40,
@@ -55,7 +62,7 @@ const styles=StyleSheet.create({
 	},
 	buttonText:{
 		textAlign:'center',
-		color:'#01DF74'
+		color:'#57AEA3'
 	//	fontWeight:1200 
 	}
 
