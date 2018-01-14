@@ -20,8 +20,13 @@
   },
   "dependencies": {
     "expo": "^22.0.2",
+    "firebase": "^4.8.2",
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5",
+    "react-native-datepicker": "^1.6.0",
+    "react-native-datetime": "^0.1.2",
+    "react-native-firebase": "^3.2.2",
+    "react-native-firebase-auth": "^1.0.1",
     "react-native-router-flux": "^4.0.0-beta.24",
     "react-native-send-intent": "^1.0.21",
     "react-navigation": "^1.0.0-beta.19"

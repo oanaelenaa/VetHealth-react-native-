@@ -4,11 +4,11 @@ import {Actions} from 'react-native-router-flux';
 import email from 'react-native-email'
 import firebase from 'firebase';
 
-export default class HomeScreen extends Component{
+export default class AddDiagnosis extends Component{
     constructor(props) {
         super(props);
         this.onSendMailPressed=this.onSendMailPressed.bind(this);
-        this.sendMailTo=this.props.currentEmail;
+        // this.sendMailTo=this.props.currentEmail;
     }
 
 
@@ -28,26 +28,13 @@ export default class HomeScreen extends Component{
         return (
             <View style={styles.container}>
                 <TouchableOpacity
-                    onPress={() =>Actions.petbook()}
+                    onPress={() =>Actions.adddiagnosis()}
                     style={styles.buttonSendMail}>
                     <Text style={styles.sendMailText}>
-                        PetBook
+                        Add diagnosis
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => Actions.newsfeed()}
-                    style={styles.buttonSendMail}>
-                    <Text style={styles.sendMailText}>
-                        News Feed
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => Actions.newsfeed()}
-                    style={styles.buttonSendMail}>
-                    <Text style={styles.sendMailText}>
-                        Find Vet
-                    </Text>
-                </TouchableOpacity>
+
                 <TouchableOpacity
                     onPress={() => {
                         firebase.auth().signOut().then(function () {
