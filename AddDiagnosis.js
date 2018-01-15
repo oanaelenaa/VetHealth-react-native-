@@ -1,4 +1,4 @@
-import React,{PropTypes,Component} from 'react';
+import React,{Component} from 'react';
 import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet,RefreshControl} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import email from 'react-native-email'

@@ -11,6 +11,9 @@ export default class LoginForm extends Component{
             email:"",
             password:"",
             error:"",loading: false,showErrorMessage:false,
+            adminEmail:'alexa@yahoo.com',
+            adminPassword:'123pas'
+
         }
         this.onLoginPressed=this.onLoginPressed.bind(this)
     }
@@ -18,10 +21,13 @@ export default class LoginForm extends Component{
         //var usersRef = firebase.database().ref().child('/Users');
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(function () {
-               // alert("Welcome " + firebase.auth().currentUser.email + "!");
-                Actions.home();
+                alert("Welcome " + firebase.auth().currentUser.email + "!");
+                if (firebase.auth().currentUser.email === 'alexa@yahoo.com') {
+                    Actions.homescreendoctor();
+                }else {
+                    Actions.home();
+                }
             }).catch(function (error) {
-            console.log(this.state.email,this.state.password);
             alert(error.code);
             alert(error.message);
         });

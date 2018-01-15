@@ -1,9 +1,9 @@
-import React,{PropTypes,Component} from 'react';
+import React,{Component} from 'react';
 import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet,RefreshControl} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import email from 'react-native-email'
 import firebase from 'firebase';
-
+import {DiagnosisChart} from "./components/DiagnosisChart";
 export default class HomeScreenDoctor extends Component{
     constructor(props) {
         super(props);
@@ -34,7 +34,8 @@ export default class HomeScreenDoctor extends Component{
                         Add diagnosis
                     </Text>
                 </TouchableOpacity>
-               
+
+                <DiagnosisChart></DiagnosisChart>
                 <TouchableOpacity
                     onPress={() => {
                         firebase.auth().signOut().then(function () {
@@ -77,7 +78,7 @@ const styles=StyleSheet.create({
     },
     buttonSendMail:{
         alignItems: 'center',
-        paddingBottom: 30,
+        paddingTop: 30,
         borderBottomWidth: 1,
         borderBottomColor: 'gray',
 

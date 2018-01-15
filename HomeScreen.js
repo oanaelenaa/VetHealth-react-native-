@@ -1,9 +1,8 @@
-import React,{PropTypes,Component} from 'react';
+import React,{Component} from 'react';
 import {View,TouchableOpacity, TouchableHighlight,Text, ListView, StyleSheet,RefreshControl} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import email from 'react-native-email'
 import firebase from 'firebase';
-
 export default class HomeScreen extends Component{
     constructor(props) {
         super(props);

@@ -66,6 +66,10 @@ export default class PetBookScreen extends Component{
                                           borderWidth: 1,
                                           borderColor: '#d6d7da',
                                       }}
+                                      onPress={() => {
+                                              Actions.EditPetScreen({item:item});
+                                          }
+                                      }
                                       onLongPress={() => {
                                           firebase.database().ref("/Animals").child(item.id).remove();
                                           alert("The pet"+item.name+" was removed from your Pet Book!");
@@ -104,11 +108,11 @@ const styles=StyleSheet.create({
     titleContainer:{
         marginTop:50,
         fontWeight:'800',
-        color:'#01DF74',
+        color:'#57AEA3',
         textAlign:'center'
     },
     buttonAddPet:{
-        backgroundColor:'#01DF74',
+        backgroundColor:'#57AEA3',
         paddingVertical:15
     },
     buttonContainer:{
