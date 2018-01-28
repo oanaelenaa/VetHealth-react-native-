@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {StyleSheet,View,TextInput,TouchableOpacity,Text,KeyboardAvoidingView,StatusBar} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
-
+import LinksScreen from './components/LinkScreens';
 export default class LoginForm extends Component{
 
     constructor(props){

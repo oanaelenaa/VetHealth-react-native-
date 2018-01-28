@@ -6,7 +6,6 @@ import {Notifications} from 'expo';
 import * as firebase from 'firebase';
 import {Actions} from '../router';
 //import {List, ListItem, Button} from 'react-native';
-import Expo from 'expo';
 
 export default class LinksScreen extends React.Component {
 
@@ -49,7 +48,7 @@ export default class LinksScreen extends React.Component {
         );
     }
 
-    _registerForPushNotifications() {
+     _registerForPushNotifications() {
         // Send our push token over to our backend so we can receive notifications
         // You can comment the following line out if you want to stop receiving
         // a notification every time you open the app. Check out the source

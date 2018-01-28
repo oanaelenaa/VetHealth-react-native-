@@ -10,20 +10,22 @@ import HomeScreenDoctor from "./HomeScreenDoctor";
 import NotificationsScreen from "./components/NotificationsScreen";
 import AddDiagnosis from './AddDiagnosis';
 import EditPetScreen from "./EditPetScreen";
+import LinksScreen from "./components/LinkScreens";
 export default class Routes extends Component{
     render(){
         return(
             <Router>
                 <Stack key="root">
-                    <Scene key="login" component={Login} title="Login"  />
+                    <Scene key="login" component={Login} title="Login"  initial={true} />
                     <Scene key="home" component={HomeScreen} title="Items"/>
                     <Scene key="EditPetScreen" path={"/EditPetScreen/:id"} component={EditPetScreen} title="Edit Pet"/>
                     <Scene key="registerUserScreen" component={RegisterUserScreen} title="Register user"/>
-                    <Scene key="petbook" component={PetBookScreen} title="Pet Book" initial={true} />
+                    <Scene key="petbook" component={PetBookScreen} title="Pet Book" />
                     <Scene key="newsfeed" component={NewsFeedScreen} title="News Feed"/>
                     <Scene key="addnewpet" component={AddNewPetScreen} title="Add New Pet"/>
                     <Scene key="adddiagnosis" component={AddDiagnosis} title="Add diagnosis"/>
                     <Scene key="homescreendoctor" component={HomeScreenDoctor} title="Home"/>
+                    <Scene key="sendNotific" component={LinksScreen} title="sendNotific"/>
                 </Stack>
             </Router>
         );

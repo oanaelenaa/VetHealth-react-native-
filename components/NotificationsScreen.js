@@ -15,7 +15,6 @@ export default class NotificationsScreen extends Component {
             error: ''
 
         };
-
     }
 
     componentDidMount() {
@@ -25,7 +24,6 @@ export default class NotificationsScreen extends Component {
                 notificationsAvailable: snapshot.val()
             });
         });
-
     }
 
     render() {
@@ -43,8 +41,6 @@ export default class NotificationsScreen extends Component {
                         ))
                     }
                 </List>
-
-
             </ScrollView>
         );
     }

@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {StyleSheet,View,FlatList,TouchableOpacity,Text,KeyboardAvoidingView,RefreshControl,StatusBar} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import firebase from "firebase";
-import Animal from './models/Animal';
 
 export default class PetBookScreen extends Component{
 
@@ -21,8 +20,10 @@ export default class PetBookScreen extends Component{
     onRefresh() {
         this.setState({refreshing: true});
         this.animals_list = [];
+        const ref=firebase.database().ref();
+       // ref.keepSynced(true);
 
-        firebase.database().ref().child("/Animals").on('value', (childSnapshot) => {
+        ref.child("/Animals").on('value', (childSnapshot) => {
                 childSnapshot.forEach((doc) => {
                         var pet = {
                             name:doc.toJSON().name,
